@@ -10,29 +10,51 @@ export default function FormGenerateImage() {
     e.preventDefault();
     try {
       // Generate Image
-      const client = await Client.connect("gokaygokay/Chroma");
-      const result = await client.predict("/generate_image", {
+      const client = await Client.connect("nroggendorff/epicrealismxl");
+      const result = await client.predict("/generate", {
         prompt: promptImage,
+        negative_prompt: "ugly, low quality",
+        width: 1024,
+        height: 768,
+        sample_steps: 20,
       });
 
-      console.log(result.data);
+      console.log(result.data[0]);
 
-      //   setImageUrl(result.data[0].url);
-
-      //   const result = await window.puter.ai.txt2img(promptImage, true);
-      //   console.log(result);
-      //   setImageUrl(result);
+      setImageUrl(result.data[0].url);
     } catch (err) {
       console.error("Error generating image:", err);
     }
   };
 
-  const saveImage = () => {
+  const saveImage = async () => {
     if (!imageUrl) return;
-    const link = document.createElement("a");
-    link.href = imageUrl;
-    link.download = "generated.png"; // nama file
-    link.click();
+
+    try {
+      // Ambil file dari url
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+
+      // Buat nama file dari 2 kata depan prompt
+      const nameFile =
+        promptImage.split(" ").slice(0, 2).join(" ") || "generated";
+
+      // Convert ke Object URL
+      const blobUrl = URL.createObjectURL(blob);
+
+      // Buat link untuk download
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `${nameFile}.png`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+
+      // Bersihkan Object URL setelah dipakai
+      URL.revokeObjectURL(blobUrl);
+    } catch (err) {
+      console.error("Error saving image:", err);
+    }
   };
 
   return (

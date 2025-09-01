@@ -32,6 +32,8 @@ export default function FormGenerateHome({ onSubmit }) {
           options={[
             { value: "Rumah123.com", label: "Gaya Rumah123" },
             { value: "Dekoruma.com", label: "Gaya Dekoruma" },
+            { value: "Houzz.com", label: "Gaya Houzz (ENG)" },
+            { value: "Forbes.com", label: "Gaya Forbes (ENG)" },
             { value: "TribunNews.com", label: "Gaya TribunNews.com" },
             { value: "Liputan6.com", label: "Gaya Liputan6.com" },
             { value: "Hipwee", label: "Gaya Hipwee" },
@@ -59,8 +61,8 @@ export default function FormGenerateHome({ onSubmit }) {
           value={formData.language}
           onChange={handleInputChange}
           options={[
-            { value: "ID", label: "Bahasa Indonesia" },
-            { value: "EN", label: "English" },
+            { value: "Indonesia", label: "Bahasa Indonesia" },
+            { value: "English", label: "English" },
           ]}
           required
         />

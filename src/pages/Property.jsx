@@ -35,7 +35,8 @@ export default function Property() {
       const analystSecond = await generateHome(
         resultAnalyst,
         title,
-        writingStyle
+        writingStyle,
+        language
       );
 
       console.log(analystSecond);

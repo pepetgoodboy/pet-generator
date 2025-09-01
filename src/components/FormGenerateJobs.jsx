@@ -50,8 +50,8 @@ export default function FormGenerateJobs({ onSubmit }) {
           value={formData.language}
           onChange={handleInputChange}
           options={[
-            { value: "ID", label: "Bahasa Indonesia" },
-            { value: "EN", label: "English" },
+            { value: "Indonesia", label: "Bahasa Indonesia" },
+            { value: "English", label: "English" },
           ]}
           required
         />
@@ -65,6 +65,8 @@ export default function FormGenerateJobs({ onSubmit }) {
           options={[
             { value: "TribunNews.com", label: "Gaya TribunNews.com" },
             { value: "Liputan6.com", label: "Gaya Liputan6.com" },
+            { value: "Remotely.jobs", label: "Gaya Remotely.jobs (EN)" },
+            { value: "Remote.co", label: "Gaya Remote.co (EN)" },
             { value: "Hipwee", label: "Gaya Hipwee" },
             { value: "Fimela.com", label: "Gaya Fimela.com" },
             { value: "Dream.com", label: "Gaya Dream.com" },

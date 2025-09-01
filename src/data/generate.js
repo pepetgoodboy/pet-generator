@@ -1,10 +1,17 @@
-const generateJob = (analyst, titleContent, writingStyle, promptType) => {
+const generateJob = (
+  analyst,
+  titleContent,
+  writingStyle,
+  promptType,
+  language
+) => {
   if (promptType === "mythic") {
-    return `Generate content based on the following analysis:
+    if (language === "Indonesia") {
+      return `Generate content based on the following analysis:
         
         ${analyst}
 
-        Lalu gunakan konten hasil analisa ini untuk membuat konten tentang lowongan kerja ${titleContent}. menggunakan bahasa santai yang digunakan oleh ${writingStyle} in bahasa indonesia dan pastikan konten berjumlah sekitar 2000 kata dalam format HTML (abaikan tag html, head, body) langsung saja isi dari tag body. 
+        Lalu gunakan konten hasil analisa ini untuk membuat konten tentang lowongan kerja ${titleContent}. menggunakan bahasa santai yang digunakan oleh ${writingStyle} in bahasa Indonesia dan pastikan konten berjumlah sekitar 2000 kata dalam format HTML (abaikan tag html, head, body) langsung saja isi dari tag body. 
         Saat membuat konten kurangi penggunaan tanda baca koma (,). Konten harus mengandung tag h2, setiap paragraf memakai tag p, dan setiap contoh, cara, prosedur, dll menggunakan tag ul. 
         
         Struktur Konten: 
@@ -31,6 +38,38 @@ const generateJob = (analyst, titleContent, writingStyle, promptType) => {
         Tulisan pada tombol: "Lamar Sekarang".
         Jika ada website utama perusahaan, gunakan sebagai href link tersebut. Jika tidak ada, gunakan href="#" saja.
         `;
+    } else {
+      return `Generate content based on the following analysis:
+        
+        ${analyst}
+
+        Then, use the analysis results to create a job vacancy article about ${titleContent}. The content must be written in English using a casual tone that reflects ${writingStyle}. The article should be around 2000 words in HTML format (ignore html, head, body tags) and directly write the content inside the body tag. 
+            
+        While writing, reduce the use of commas (,). The content must include H2 tags, each paragraph wrapped with a P tag, and every example, method, step, or procedure written inside UL tags. 
+            
+        Content Structure: 
+        Intro (Introduction): Write 2 engaging intro paragraphs related to the main keyword using P tags. Then, provide a complete descriptive explanation of ${titleContent} in 300 words.  
+            
+        Summary Table: Create a horizontal table (two columns: key–value) containing Position, Company Name, Location: Remote, and Salary (if empty, write “Negotiable”). Output only in HTML with inline CSS, make it simple, each value must use font-weight:bold, and do not use <th> tags.  
+            
+        Main Section:  
+        Use H2 tags for each related topic, including data from the analysis.  
+        For each header (H2) and subheader (H3), provide engaging explanations.  
+        Each H2 and H3 must begin with an intro/summary paragraph (P tag), followed by 2 or more detailed paragraphs.  
+        Deeply explain the specific data and important points as bullet points (UL tags) for each Search Intent.  
+        Analyze and explain each secondary keyword under H3 with detailed paragraphs or UL bullet points.  
+        Also elaborate on related topics from the analysis as additional explanations under the appropriate headers/subheaders.  
+        Do not create <a> links inside the content. Synonymize each header/subheader so they are unique and different from the analysis data.  
+            
+        Additional Rules:  
+        Do not mention website names directly; replace them with “officialsite” if necessary.  
+        Provide examples, steps, or tips where needed.  
+        Avoid repeating the same explanations, but rewrite important keywords in the opening and closing paragraphs.  
+        The content must fully match the title. If the title contains a number (e.g., “50 tips…”, “30 lists…”), then the number of headers and explanations must equal that number.  
+            
+        Conclusion: End the content by encouraging job seekers to apply if they meet the requirements, qualifications, and documents needed.  
+      `;
+    }
   } else if (promptType === "epic") {
     return `Generate content based on the following analysis:
         
@@ -125,12 +164,12 @@ const generateJob = (analyst, titleContent, writingStyle, promptType) => {
   }
 };
 
-const generateHome = (analyst, titleContent, writingStyle) => {
+const generateHome = (analyst, titleContent, writingStyle, language) => {
   return `Generate content based on the following analysis:
         
         ${analyst}
 
-        Lalu gunakan konten hasil analisa ini untuk membuat konten tentang ${titleContent}. menggunakan bahasa santai yang digunakan oleh ${writingStyle} in bahasa indonesia dan pastikan konten berjumlah sekitar 2000 kata dalam format HTML (abaikan tag html, head, body) langsung saja isi dari tag body. 
+        Lalu gunakan konten hasil analisa ini untuk membuat konten tentang ${titleContent}. menggunakan bahasa santai yang digunakan oleh ${writingStyle} in bahasa ${language} dan pastikan konten berjumlah sekitar 2000 kata dalam format HTML (abaikan tag html, head, body) langsung saja isi dari tag body. 
         Saat membuat konten kurangi penggunaan tanda baca koma (,). Konten harus mengandung tag h2 dan setiap paragraf harus memakai tag p. 
         
         Struktur Konten: 

@@ -24,7 +24,10 @@ export default function Job() {
         promptType,
       } = formData;
 
-      const job = `Lowongan Kerja ${position} ${company}, ${location}`;
+      const job =
+        language === "Indonesia"
+          ? `Lowongan Kerja ${position} ${company}, ${location}`
+          : `Job Vacancy ${position} ${company}, ${location}`;
 
       // Analisis tahap pertama
       const analystFirst = await analystJob(job, writingStyle, language);
@@ -45,7 +48,8 @@ export default function Job() {
         resultAnalyst,
         job,
         writingStyle,
-        promptType
+        promptType,
+        language
       );
 
       const generateContent = await window.puter.ai.chat(analystSecond, {
